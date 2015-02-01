@@ -24,3 +24,6 @@
 
 # Ignore bundle tempfiles.
 /vendor/
+
+# Ignore data file
+/db/commits.txt

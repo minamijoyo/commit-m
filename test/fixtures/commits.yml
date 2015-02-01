@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  repo_full_name: MyString
+  sha: MyString
+  message: MyText
+
+two:
+  repo_full_name: MyString
+  sha: MyString
+  message: MyText
