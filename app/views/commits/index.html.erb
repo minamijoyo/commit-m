@@ -1,9 +1,39 @@
-<div class="center hero-unit">
-<h1>commit-m.io</h1>
+<h1>
+  commit-m.io
+</h1>
+<p>Search commit messages of pupular GitHub repositories.</p>
+<form class="form-inline">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="keyword">
+  </div>
+  <button type="submit" class="btn btn-default">
+    Search  <i class="fa fa-search"></i>
+  </button>
+</form>
 
-<h2>
-  <i class="fa fa-search"></i>Search commit messages on GitHub popular repositories.
-</h2>
-
-<button type="button" class="btn btn-primary">Primary</button>
-</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="col-xs-2">Repository</th>
+      <th class="col-xs-2">SHA</th>
+      <th class="col-xs-8">Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>repo1</td>
+      <td>sha1</td>
+      <td>message1</td>
+    </tr>
+    <tr>
+      <td>repo2</td>
+      <td>sha2</td>
+      <td>message2</td>
+    </tr>
+    <tr>
+      <td>repo3</td>
+      <td>sha3</td>
+      <td>message3</td>
+    </tr>
+  </tbody>
+</table>
