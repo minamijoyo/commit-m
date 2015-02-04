@@ -1,0 +1,6 @@
+<%= form_tag({controller: :commits, action: :search}, class: "form-inline") do %>
+  <%= text_field_tag :keyword, '', size: '100%', class: "form-control", placeholder: "keyword" %>
+  <%= button_tag(type: "submit", class: "btn btn-default") do %>
+  Search <i class="fa fa-search"></i>
+  <% end %>
+<% end %>

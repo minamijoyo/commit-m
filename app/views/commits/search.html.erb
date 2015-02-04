@@ -1,0 +1,24 @@
+<%= render 'header' %>
+<%= render 'search_form' %>
+
+<% if @commits.any? %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="col-xs-2">Repository</th>
+        <th class="col-xs-2">SHA</th>
+        <th class="col-xs-8">Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @commits.each do |commit| %>
+      <tr>
+        <td><%= commit.repo_full_name %></td>
+        <td><%= commit.sha %></td>
+        <td><%= commit.message %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate %>
+<% end %>
