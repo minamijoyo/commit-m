@@ -4,6 +4,7 @@ class CommitsController < ApplicationController
   end
 
   def search
-    @commits = Commit.paginate(page: params[:page])
+    keyword = params[:keyword]
+    @commits = Commit.search(:message_cont => keyword).result.paginate(page: params[:page])
   end
 end

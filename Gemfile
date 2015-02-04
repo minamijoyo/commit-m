@@ -32,11 +32,17 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# style and font
 gem 'sprockets', '~> 2.12.3'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'font-awesome-sass', '~> 4.3.0'
+
+# paginate
 gem 'will_paginate', '~> 3.0.7'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
+
+# search
+gem "ransack", '~> 1.6.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
