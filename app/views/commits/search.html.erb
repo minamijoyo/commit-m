@@ -5,17 +5,17 @@
   <table class="table table-hover">
     <thead>
       <tr>
+        <th class="col-xs-9">Message</th>
         <th class="col-xs-2">Repository</th>
-        <th class="col-xs-2">SHA</th>
-        <th class="col-xs-8">Message</th>
+        <th class="col-xs-1">SHA</th>
       </tr>
     </thead>
     <tbody>
       <% @commits.each do |commit| %>
       <tr>
-        <td><%= commit.repo_full_name %></td>
-        <td><%= commit.sha %></td>
         <td><%= commit.message %></td>
+        <td><%= link_to commit.repo_full_name, "https://github.com/#{commit.repo_full_name}", { :target => "_blank" } %></td>
+        <td><%= link_to commit.sha[0,7], "https://github.com/twbs/bootstrap/commit/#{commit.sha}", { :target => "_blank" } %></td>
       </tr>
       <% end %>
     </tbody>
