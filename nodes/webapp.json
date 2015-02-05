@@ -4,7 +4,9 @@
     "recipe[git]",
     "recipe[rvm::system]",
     "recipe[sqlite]",
-    "recipe[nodejs]"
+    "recipe[nodejs]",
+    "recipe[mysql::server]",
+    "recipe[mysql::client]"
   ],
   "automatic": {
     "ipaddress": "webapp"
@@ -14,5 +16,13 @@
     "default_ruby": "ruby-2.2",
     "user_default_ruby": "ruby-2.2",
     "rubies": ["ruby-2.2"]
+  },
+  "mysql": {
+    "service_name": "default",
+    "version": "5.6",
+    "port": "3306",
+    "server_root_password": "vagrant",
+    "remove_anonymous_users": true,
+    "remove_test_database": true
   }
 }
