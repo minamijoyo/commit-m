@@ -3,7 +3,8 @@
     "recipe[build-essential]",
     "recipe[git]",
     "recipe[rvm::system]",
-    "recipe[sqlite]"
+    "recipe[sqlite]",
+    "recipe[nodejs]"
   ],
   "automatic": {
     "ipaddress": "webapp"
