@@ -1,0 +1,17 @@
+{
+  "run_list": [
+    "recipe[build-essential]",
+    "recipe[git]",
+    "recipe[rvm::system]",
+    "recipe[sqlite]"
+  ],
+  "automatic": {
+    "ipaddress": "webapp"
+  },
+  "rvm": {
+    "user": "root",
+    "default_ruby": "ruby-2.2",
+    "user_default_ruby": "ruby-2.2",
+    "rubies": ["ruby-2.2"]
+  }
+}

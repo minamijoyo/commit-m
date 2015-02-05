@@ -13,25 +13,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "4096"]
   end
 
-  config.omnibus.chef_version = :latest
-
-  config.vm.provision :chef_solo do |chef|
-
-    chef.cookbooks_path = "./cookbooks"
-    chef.run_list = [
-    ]
-    chef.add_recipe 'build-essential'
-    chef.add_recipe 'git'
-    chef.add_recipe 'rvm::system'
-    chef.add_recipe 'sqlite'
-
-    chef.json = {
-      rvm: {
-        user: "root",
-        default_ruby: "ruby-2.2",
-        user_default_ruby: "ruby-2.2",
-        rubies: ["ruby-2.2" ]
-      }
-    }
-  end
 end
