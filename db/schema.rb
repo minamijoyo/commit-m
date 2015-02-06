@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201100358) do
+ActiveRecord::Schema.define(version: 20150206073821) do
 
   create_table "commits", force: :cascade do |t|
     t.string   "repo_full_name", limit: 255
@@ -20,5 +20,7 @@ ActiveRecord::Schema.define(version: 20150201100358) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
+
+  add_index "commits", ["message"], name: "index_commits_on_message", type: :fulltext
 
 end

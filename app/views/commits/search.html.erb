@@ -19,5 +19,5 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate %>
+  <%= will_paginate @commits, :params => { :keyword => params[:keyword]} %>
 <% end %>
