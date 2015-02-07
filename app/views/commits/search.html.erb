@@ -12,12 +12,12 @@
     <tbody>
       <% @commits.each do |commit| %>
       <tr>
-        <td><%= commit.message %></td>
+        <td><%= highlight(commit.message, @keyword.split) %></td>
         <td><%= link_to commit.repo_full_name, "https://github.com/#{commit.repo_full_name}", { :target => "_blank" } %></td>
         <td><%= link_to commit.sha[0,7], "https://github.com/twbs/bootstrap/commit/#{commit.sha}", { :target => "_blank" } %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @commits, :params => { :keyword => params[:keyword]} %>
+  <%= will_paginate @commits, :params => { :keyword => @keyword} %>
 <% end %>
