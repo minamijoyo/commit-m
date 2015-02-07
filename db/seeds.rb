@@ -18,6 +18,6 @@ open('db/commits.txt') do |file|
     repo_full_name, sha, message = line.split(', ', 3)
     Commit.create(:repo_full_name => repo_full_name,
                   :sha => sha,
-                  :message => message)
+                  :message => message[0,1024])
   end
 end

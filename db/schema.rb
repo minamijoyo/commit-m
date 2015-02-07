@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(version: 20150206073821) do
 
   create_table "commits", force: :cascade do |t|
-    t.string   "repo_full_name", limit: 255
-    t.string   "sha",            limit: 255
+    t.string   "repo_full_name", limit: 191
+    t.string   "sha",            limit: 191
     t.text     "message",        limit: 65535
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
