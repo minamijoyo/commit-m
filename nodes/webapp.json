@@ -1,28 +1,10 @@
 {
+  "environment": "development",
   "run_list": [
-    "recipe[build-essential]",
-    "recipe[git]",
-    "recipe[rvm::system]",
-    "recipe[sqlite]",
-    "recipe[nodejs]",
-    "recipe[mysql::server]",
-    "recipe[mysql::client]"
+    "role[ap]",
+    "role[db]"
   ],
   "automatic": {
     "ipaddress": "webapp"
-  },
-  "rvm": {
-    "user": "root",
-    "default_ruby": "ruby-2.2",
-    "user_default_ruby": "ruby-2.2",
-    "rubies": ["ruby-2.2"]
-  },
-  "mysql": {
-    "service_name": "default",
-    "version": "5.6",
-    "port": "3306",
-    "server_root_password": "vagrant",
-    "remove_anonymous_users": true,
-    "remove_test_database": true
   }
 }

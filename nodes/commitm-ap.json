@@ -1,0 +1,6 @@
+{
+  "environment": "production",
+  "run_list": [
+    "role[ap]"
+  ]
+}

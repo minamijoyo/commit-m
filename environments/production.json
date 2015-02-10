@@ -1,0 +1,12 @@
+{
+  "name": "production",
+  "description": "Production environment",
+  "chef_type": "environment",
+  "json_class": "Chef::Environment",
+  "default_attributes": {
+    "mysql": {
+      "port": "3306"
+    }
+  },
+  "override_attributes": {}
+}

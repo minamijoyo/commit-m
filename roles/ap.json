@@ -1,0 +1,22 @@
+{
+  "name": "ap",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "rvm": {
+      "user": "root",
+      "default_ruby": "ruby-2.2",
+      "user_default_ruby": "ruby-2.2",
+      "rubies": ["ruby-2.2"]
+    }
+  },
+  "override_attributes": {},
+  "run_list": [
+    "recipe[build-essential]",
+    "recipe[git]",
+    "recipe[rvm::system]",
+    "recipe[sqlite]",
+    "recipe[nodejs]",
+    "recipe[mysql::client]"
+  ]
+}
