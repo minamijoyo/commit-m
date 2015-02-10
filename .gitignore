@@ -27,3 +27,6 @@
 
 # Ignore data file
 /db/commits.txt
+
+# Ignore database environment
+config/database.conf

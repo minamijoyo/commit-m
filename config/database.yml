@@ -5,22 +5,25 @@ default: &default
   collation: utf8mb4_general_ci
   reconnect: false
   pool: 5
-  socket: /var/lib/mysql/mysql.sock
 
 development:
   <<: *default
+  socket: /var/lib/mysql/mysql.sock
   database: db_development
   username: user_development
   password: pass_development
 
 test:
   <<: *default
+  socket: /var/lib/mysql/mysql.sock
   database: db_test
   username: user_test
   password: pass_test
 
 production:
   <<: *default
-  database: db_production
-  username: user_production
-  password: pass_production
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>
+  database: <%= ENV['DB_DATABASE'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
