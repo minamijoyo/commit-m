@@ -5,6 +5,6 @@
     "role[db]"
   ],
   "automatic": {
-    "ipaddress": "webapp"
+    "ipaddress": "commitm-dev"
   }
 }
