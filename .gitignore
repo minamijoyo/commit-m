@@ -28,5 +28,5 @@
 # Ignore data file
 /db/commits.txt
 
-# Ignore database environment
-config/database.conf
+# Ignore production environment
+config/environments/production.env
