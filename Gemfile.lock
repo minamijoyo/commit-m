@@ -71,6 +71,7 @@ GEM
       execjs
     coffee-script-source (1.9.0)
     columnize (0.9.0)
+    database_cleaner (1.4.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
@@ -144,6 +145,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.0.1)
+      byebug (~> 3.4)
+      pry (~> 0.10)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -268,6 +272,7 @@ DEPENDENCIES
   capybara (~> 2.4.4)
   childprocess (~> 0.5.5)
   coffee-rails (~> 4.1.0)
+  database_cleaner (~> 1.4.0)
   factory_girl_rails (~> 4.5.0)
   font-awesome-sass (~> 4.3.0)
   guard (~> 2.12.1)
@@ -276,6 +281,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mysql2 (~> 0.3.17)
+  pry-byebug (~> 3.0.1)
   rails (= 4.2.0)
   ransack (~> 1.6.3)
   rspec-rails (~> 3.2.0)

@@ -64,6 +64,7 @@ group :development, :test do
   gem 'spork-rails', '~> 4.0.0'
   gem 'guard-spork', '~> 2.1.0'
   gem 'childprocess', '~> 0.5.5'
+  gem 'pry-byebug', '~> 3.0.1'
 end
 
 group :test do
@@ -71,4 +72,5 @@ group :test do
   gem 'capybara', '~> 2.4.4'
   gem 'terminal-notifier-guard', '~> 1.6.4'
   gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'database_cleaner', ' ~> 1.4.0'
 end
