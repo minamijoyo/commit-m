@@ -1,6 +1,8 @@
 require 'spec_helper'
 
-# package
-describe package('sqlite') do
-  it { should be_installed }
+describe "sqlite spec" do
+  # package
+  describe package('sqlite') do
+    it { should be_installed }
+  end
 end

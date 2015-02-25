@@ -1,6 +1,8 @@
 require 'spec_helper'
 
-# package
-describe package('nodejs') do
-  it { should be_installed }
+describe "nodejs spec" do
+  # package
+  describe package('nodejs') do
+    it { should be_installed }
+  end
 end

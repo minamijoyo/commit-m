@@ -1,20 +1,23 @@
 require 'spec_helper'
 
-# package
-packages = %w{
-                autoconf
-                bison
-                flex
-                gcc
-                gcc-c++
-                kernel-devel
-                make
-                m4
-                patch
-              }
+describe "build-essential spec" do
 
-packages.each do |package_name|
-  describe package(package_name) do
-    it { should be_installed }
+  # package
+  packages = %w{
+                  autoconf
+                  bison
+                  flex
+                  gcc
+                  gcc-c++
+                  kernel-devel
+                  make
+                  m4
+                  patch
+                }
+
+  packages.each do |package_name|
+    describe package(package_name) do
+      it { should be_installed }
+    end
   end
 end
