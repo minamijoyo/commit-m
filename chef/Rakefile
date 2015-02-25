@@ -1,24 +1,35 @@
 require 'rake'
 require 'rspec/core/rake_task'
 
-task :spec    => 'spec:all'
-task :default => :spec
+hosts = [
+  {
+    :name   => 'commitm-dev',
+    :roles  => %w( base ap db )
+  },
+  {
+    :name   => 'commitm-ap01',
+    :roles  => %w( base ap )
+  }
+]
 
-namespace :spec do
-  targets = []
-  Dir.glob('./spec/*').each do |dir|
-    next unless File.directory?(dir)
-    targets << File.basename(dir)
-  end
+hosts = hosts.map do |host|
+  {
+    :name       => host[:name],
+    :short_name => host[:name].split('.')[0],
+    :roles      => host[:roles]
+  }
+end
 
-  task :all     => targets
-  task :default => :all
+desc "Run serverspec to all hosts"
+task :serverspec => 'serverspec:all'
 
-  targets.each do |target|
-    desc "Run serverspec tests to #{target}"
-    RSpec::Core::RakeTask.new(target.to_sym) do |t|
-      ENV['TARGET_HOST'] = target
-      t.pattern = "spec/#{target}/*_spec.rb"
+namespace :serverspec do
+  task :all => hosts.map { |h| 'serverspec:' + h[:short_name] }
+  hosts.each do |host|
+    desc "Run serverspec to #{host[:name]}"
+    RSpec::Core::RakeTask.new(host[:short_name].to_sym) do |t|
+      ENV['TARGET_HOST'] = host[:name]
+      t.pattern = 'spec/{' + host[:roles].join(',') + '}/*_spec.rb'
     end
   end
 end
