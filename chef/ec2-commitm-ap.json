@@ -1,0 +1,34 @@
+{
+    "ImageId": "ami-18869819",
+    "KeyName": "aws-login",
+    "SecurityGroupIds": [
+        "sg-48b7002d"
+    ],
+    "InstanceType": "t2.micro",
+    "Placement": {
+        "AvailabilityZone": "ap-northeast-1a"
+    },
+    "BlockDeviceMappings": [
+        {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+                "VolumeSize": 8,
+                "DeleteOnTermination": true,
+                "VolumeType": "gp2"
+            }
+        }
+    ],
+    "Monitoring": {
+        "Enabled": false
+    },
+    "DisableApiTermination": false,
+    "NetworkInterfaces": [
+        {
+            "DeviceIndex": 0,
+            "SubnetId": "subnet-6b55851c",
+            "DeleteOnTermination": true,
+            "AssociatePublicIpAddress": true
+        }
+    ],
+    "EbsOptimized": false
+}
