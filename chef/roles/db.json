@@ -12,8 +12,6 @@
   },
   "override_attributes": {},
   "run_list": [
-    "recipe[build-essential]",
-    "recipe[git]",
     "recipe[mysql::server]",
     "recipe[mysql::client]"
   ]
