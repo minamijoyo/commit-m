@@ -9,6 +9,10 @@ hosts = [
   {
     :name   => 'commitm-ap01',
     :roles  => %w( base ap )
+  },
+  {
+    :name   => 'commitm-ap02',
+    :roles  => %w( base ap )
   }
 ]
 
