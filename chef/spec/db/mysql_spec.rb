@@ -1,11 +1,14 @@
 require 'spec_helper'
 
+# mysql command
+describe command('which mysql') do
+  let(:disable_sudo) { true }
+  its(:exit_status) { should eq 0 }
+end
+
 # package
 describe package('mysql-community-server') do
   it { should be_installed.with_version("5.6") }
-end
-describe package('mysql-community-client') do
-  it { should be_installed }
 end
 
 # service
