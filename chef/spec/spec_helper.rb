@@ -1,5 +1,8 @@
 require 'serverspec'
 require 'net/ssh'
+require 'yaml'
+require 'erb'
+hosts = YAML.load(ERB.new(File.read('hosts.yml')).result)
 
 set :backend, :ssh
 
@@ -14,14 +17,13 @@ else
   set :sudo_password, ENV['SUDO_PASSWORD']
 end
 
-host = ENV['TARGET_HOST']
-
-options = Net::SSH::Config.for(host)
-
-options[:user] ||= Etc.getlogin
-
-set :host,        options[:host_name] || host
-set :ssh_options, options
+h = ENV['TARGET_HOST']
+set :host,        hosts[h][:host_name]
+set :ssh_options, {
+  :user => hosts[h][:user],
+  :port => hosts[h][:port],
+  :keys => hosts[h][:keys],
+}
 
 set :request_pty, true
 
