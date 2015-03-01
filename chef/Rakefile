@@ -1,19 +1,19 @@
 require 'rake'
 require 'rspec/core/rake_task'
-require 'yaml'
+require 'json'
 require 'erb'
-hosts = YAML.load(ERB.new(File.read('hosts.yml')).result)
+hosts = JSON.parse(ERB.new(File.read('hosts.json')).result)
 
 desc "Run serverspec to all hosts"
 task :serverspec => 'serverspec:all'
 
 namespace :serverspec do
-  task :all => hosts.keys.map { |h| 'serverspec:' + h }
-  hosts.keys.each do |h|
-    desc "Run serverspec to #{h}"
-    RSpec::Core::RakeTask.new(h.to_sym) do |t|
-      ENV['TARGET_HOST'] = h
-      t.pattern = 'spec/{' + hosts[h][:roles].join(',') + '}/*_spec.rb'
+  task :all => hosts.map { |host| 'serverspec:' + host['name'] }
+  hosts.each do |host|
+    desc "Run serverspec to #{host['name']}"
+    RSpec::Core::RakeTask.new(host['name'].to_sym) do |t|
+      ENV['TARGET_HOST'] = host['name']
+      t.pattern = 'spec/{' + host['roles'].join(',') + '}/*_spec.rb'
     end
   end
 end

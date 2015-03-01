@@ -1,8 +1,8 @@
 require 'serverspec'
 require 'net/ssh'
-require 'yaml'
+require 'json'
 require 'erb'
-hosts = YAML.load(ERB.new(File.read('hosts.yml')).result)
+hosts = JSON.parse(ERB.new(File.read('hosts.json')).result)
 
 set :backend, :ssh
 
@@ -17,12 +17,12 @@ else
   set :sudo_password, ENV['SUDO_PASSWORD']
 end
 
-h = ENV['TARGET_HOST']
-set :host,        hosts[h][:host_name]
+host = hosts.find{ |h| h['name'] == ENV['TARGET_HOST'] }
+set :host,        host['host_name']
 set :ssh_options, {
-  :user => hosts[h][:user],
-  :port => hosts[h][:port],
-  :keys => hosts[h][:keys],
+  :user => host['user'],
+  :port => host['port'],
+  :keys => host['keys']
 }
 
 set :request_pty, true
