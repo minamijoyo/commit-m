@@ -1,7 +1,0 @@
-{
-  "environment": "production",
-  "run_list": [
-    "role[base]",
-    "role[ap]"
-  ]
-}

@@ -19,10 +19,6 @@
 # Ignore Vagrant tempfiles.
 /.vagrant/
 
-# Ignore Chef tempfiles.
-chef/cookbooks/
-chef/vendor/
-
 # Ignore bundle tempfiles.
 /vendor/
 
