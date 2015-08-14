@@ -1,8 +1,15 @@
 class Commit < ActiveRecord::Base
+  include Commit::Searchable
   def self.search_message(keyword)
     if keyword.present?
-      against_key = keyword.split.map { |key| key.insert(0,'+') }.join(' ')
-      where("match(message) against (? in boolean mode)", "#{against_key}")
+      query = {
+        "query": {
+          "match": {
+            "message": keyword
+          }
+        }
+      }
+      Commit.__elasticsearch__.search(query).records
     else
       Commit.none
     end
