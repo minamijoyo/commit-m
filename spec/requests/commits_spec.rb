@@ -18,15 +18,11 @@ RSpec.describe "Commits", type: :request do
     describe "Search form", :elasticsearch do
       before do
         3.times { FactoryGirl.create(:commit) }
-
-        Commit.__elasticsearch__.create_index! force: true
-        Commit.__elasticsearch__.refresh_index!
-        Commit.import
-        sleep 1
+        elasticsearch_create_index_and_import
       end
 
       after do
-        Commit.__elasticsearch__.client.indices.delete index: Commit.index_name
+        elasticsearch_delete_index
         Commit.delete_all
       end
 
@@ -44,15 +40,11 @@ RSpec.describe "Commits", type: :request do
   describe "Search Page", :elasticsearch do
     before do
       31.times { FactoryGirl.create(:commit) }
-
-      Commit.__elasticsearch__.create_index! force: true
-      Commit.__elasticsearch__.refresh_index!
-      Commit.import
-      sleep 1
+      elasticsearch_create_index_and_import
     end
 
     after do
-      Commit.__elasticsearch__.client.indices.delete index: Commit.index_name
+      elasticsearch_delete_index
       Commit.delete_all
     end
 
