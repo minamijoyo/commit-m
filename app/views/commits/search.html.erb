@@ -1,7 +1,7 @@
 <%= render 'search_form' %>
 <hr>
 <% unless @commits.nil? %>
-    <%= pluralize(@commits.count, "result") %>.
+    <%= pluralize(@commits.total_entries, "result") %>.
 <% end %>
 <% if @commits.any? %>
   <table class="table table-hover">

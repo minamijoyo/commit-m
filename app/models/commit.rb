@@ -9,7 +9,7 @@ class Commit < ActiveRecord::Base
           }
         }
       }
-      Commit.__elasticsearch__.search(query).records
+      Commit.__elasticsearch__.search(query)
     else
       Commit.none
     end
