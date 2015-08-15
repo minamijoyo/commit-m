@@ -15,32 +15,45 @@ RSpec.describe "Commits", type: :request do
       it { should have_link("@minamijoyo", href:  "https://twitter.com/minamijoyo")}
     end
 
-    describe "Search form" do
-#      let!(:commit1) { FactoryGirl.create(:commit, message: "hoge hoge") }
-#      let!(:commit2) { FactoryGirl.create(:commit, message: "hoge fuga") }
-#      let!(:commit3) { FactoryGirl.create(:commit, message: "fuga fuga") }
-
-      before{
+    describe "Search form", :elasticsearch do
+      before do
         3.times { FactoryGirl.create(:commit) }
-        fill_in "keyword", with:"Message"
-        click_button "Search"
-      }
-      after { Commit.delete_all }
+        elasticsearch_create_index_and_import
+      end
 
-      it { should have_content('3 results.') }
+      after do
+        elasticsearch_delete_index
+        Commit.delete_all
+      end
+
+      describe 'Click Search button' do
+        before do
+          fill_in "keyword", with:"Message"
+          click_button "Search"
+        end
+        it { should have_content('3 results.') }
+      end
 
     end
   end
 
-  describe "Search Page" do
+  describe "Search Page", :elasticsearch do
+    before do
+      31.times { FactoryGirl.create(:commit) }
+      elasticsearch_create_index_and_import
+    end
+
+    after do
+      elasticsearch_delete_index
+      Commit.delete_all
+    end
+
     describe "Search" do
-      before {
-        31.times { FactoryGirl.create(:commit) }
+      before do
         visit commits_search_path
         fill_in "keyword", with:"Message"
         click_button "Search"
-      }
-      after { Commit.delete_all }
+      end
       it { should have_content('31 results.') }
       it { should have_selector('table') }
       it { should have_content('Message') }

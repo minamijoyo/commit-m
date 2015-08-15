@@ -14,6 +14,7 @@ Spork.prefork do
   require File.expand_path('../../config/environment', __FILE__)
   require 'rspec/rails'
   require 'database_cleaner'
+  require 'elasticsearch/extensions/test/cluster'
   # Add additional requires below this line. Rails is not loaded until this point!
 
   # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -73,6 +74,25 @@ Spork.prefork do
     config.after(:each) do
       DatabaseCleaner.clean
     end
+
+    # Elasticsearch test setting
+    config.before(:all, :elasticsearch) do
+      Elasticsearch::Extensions::Test::Cluster.start(nodes: 1) unless Elasticsearch::Extensions::Test::Cluster.running?
+    end
+
+    config.after(:all, :elasticsearch) do
+      Elasticsearch::Extensions::Test::Cluster.stop if Elasticsearch::Extensions::Test::Cluster.running?
+    end
+  end
+
+  def elasticsearch_create_index_and_import
+    Commit.__elasticsearch__.create_index! force: true
+    Commit.import
+    sleep 1
+  end
+
+  def elasticsearch_delete_index
+    Commit.__elasticsearch__.client.indices.delete index: Commit.index_name
   end
 end
 

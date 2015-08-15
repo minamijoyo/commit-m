@@ -42,7 +42,8 @@ gem 'will_paginate', '~> 3.0.7'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 
 # search
-gem "ransack", '~> 1.6.3'
+gem 'elasticsearch-rails', '~> 0.1.7'
+gem 'elasticsearch-model', '~> 0.1.7'
 
 # database
 gem 'mysql2', '~> 0.3.17'
@@ -73,4 +74,5 @@ group :test do
   gem 'terminal-notifier-guard', '~> 1.6.4'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'database_cleaner', ' ~> 1.4.0'
+  gem 'elasticsearch-extensions', '~> 0.0.18'
 end
