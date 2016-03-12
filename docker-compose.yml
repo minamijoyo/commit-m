@@ -1,0 +1,29 @@
+mysql:
+  image: mysql:5.6
+  env_file: default.env
+  ports:
+    - '3306:3306'
+  volumes_from:
+    - datastore
+
+elasticsearch:
+  build: containers/elasticsearch
+  ports:
+    - '9200:9200'
+    - '9300:9300'
+  volumes_from:
+    - datastore
+
+datastore:
+  build: containers/datastore
+
+rails:
+  build: .
+  ports:
+    - '3000:3000'
+  env_file: default.env
+  volumes_from:
+    - datastore
+  links:
+    - mysql
+    - elasticsearch
