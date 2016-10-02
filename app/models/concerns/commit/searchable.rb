@@ -9,13 +9,24 @@ module Commit::Searchable
 
     settings index: {
       number_of_shards: 1,
-      number_of_replicas: 0
+      number_of_replicas: 0,
+      analysis: {
+        analyzer: {
+          commit_analyzer: {
+            tokenizer: 'standard',
+            filter: [
+              'lowercase',
+              'porter_stem'
+            ]
+          }
+        }
+      }
     } do
       mapping _source: { enabled: true } do
         indexes :id, type: 'integer', index: 'not_analyzed'
         indexes :repo_full_name, type: 'string'
         indexes :sha, type: 'string', index: 'not_analyzed'
-        indexes :message, type: 'string'
+        indexes :message, type: 'string', analyzer: 'commit_analyzer'
       end
     end
   end

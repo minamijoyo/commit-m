@@ -7,6 +7,13 @@ class Commit < ActiveRecord::Base
           "match": {
             "message": keyword
           }
+        },
+        "highlight": {
+          "pre_tags": ['<mark>'],
+          "post_tags": ['</mark>'],
+          "fields": {
+            "message": {}
+          }
         }
       }
       Commit.__elasticsearch__.search(query)
